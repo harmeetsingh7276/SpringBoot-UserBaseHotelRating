@@ -31,4 +31,19 @@ public class HotelServiceImpl implements HotelService {
     public Hotel get(String id) {
         return hotelRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Hotel not found!!"));
     }
+
+    @Override
+    public void deleteHotel(String hotelId) {
+        hotelRepository.deleteById(hotelId);
+    }
+
+    @Override
+    public Hotel updateHotel(String hotelId, Hotel hotel) {
+        Hotel hotelData=hotelRepository.findById(hotelId).orElseThrow(()->new ResourceNotFoundException());
+        hotelData.setName(hotel.getName());
+        hotelData.setLocation(hotel.getLocation());
+        hotelData.setAbout(hotel.getAbout());
+        hotelRepository.save(hotelData);
+        return hotelData;
+    }
 }

@@ -29,4 +29,16 @@ public class HotelController {
     public ResponseEntity<List<Hotel>> getAll(){
         return ResponseEntity.status(HttpStatus.OK).body(hotelService.getAll());
     }
+
+    //delete
+    @DeleteMapping("/{hotelId}")
+    public ResponseEntity<String> deleteHotel(@PathVariable String hotelId){
+        hotelService.deleteHotel(hotelId);
+        return ResponseEntity.status(HttpStatus.OK).body("Hotel Deleted:"+hotelId);
+    }
+    //update
+    @PutMapping("/{hotelId}")
+    public ResponseEntity<Hotel> updateHotel(@PathVariable String hotelId,@RequestBody Hotel hotel){
+        return ResponseEntity.ok(hotelService.updateHotel(hotelId,hotel));
+    }
 }
