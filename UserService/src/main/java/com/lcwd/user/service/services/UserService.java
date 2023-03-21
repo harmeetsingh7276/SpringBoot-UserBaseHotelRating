@@ -15,5 +15,7 @@ public interface UserService {
     User getUser(String userId);
     
     // TODO: 21/03/23  delete
+    void deleteUser(String userId);
     // TODO: 21/03/23 update
+    void updateUser(String userId,User user);
 }
