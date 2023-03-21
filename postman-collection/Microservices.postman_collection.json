@@ -197,6 +197,55 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UpdateHotel",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Jai Bhavani123\",\n    \"location\":\"Pune123\",\n    \"about\":\"Thali\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"hotels",
+								"0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteHotel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"hotels",
+								"0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
