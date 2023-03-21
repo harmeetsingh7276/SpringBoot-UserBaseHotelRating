@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microservices
+    username: postgres
+    password: Prince@7276
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
