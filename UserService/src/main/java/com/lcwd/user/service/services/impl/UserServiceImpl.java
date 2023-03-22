@@ -41,8 +41,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUser() {
         List<User> listOfUsers = userRepository.findAll();
         for (User user : listOfUsers) {
-            ArrayList<Rating> ratingsForUser = restTemplate.getForObject("http://localhost:8083/ratings/users/" + user.getUserId(), ArrayList.class);
-            user.setRating(ratingsForUser);
+            Rating[] ratingsForUser = restTemplate.getForObject("http://localhost:8083/ratings/users/" + user.getUserId(), Rating[].class);
+            List<Rating> ratings=Arrays.stream(ratingsForUser).toList();
+            List<Rating> ratingList=ratings.stream().map(rating -> {
+                ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://localhost:8082/hotels/" + rating.getHotelId(), Hotel.class);
+                logger.info("Hotel-Service Call for hotel id:{}", hotelData.getBody().getId());
+                logger.info("Hotel-Service Call HTTP STATUS CODE:{}", hotelData.getStatusCode());
+                Hotel hotel = hotelData.getBody();
+                rating.setHotel(hotel);
+                return rating;
+            }).collect(Collectors.toList());
+            user.setRating(ratings);
         }
         return listOfUsers;
     }
@@ -87,5 +96,6 @@ public class UserServiceImpl implements UserService {
         userData.setAbout(user.getAbout());
         userRepository.save(userData);
     }
+
 }
 
