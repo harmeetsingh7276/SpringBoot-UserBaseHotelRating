@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Override
     public User saveUser(User user) {
@@ -39,7 +39,10 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUser() {
         List<User> listOfUsers = userRepository.findAll();
         for (User user : listOfUsers) {
-            Rating[] ratingsForUser = restTemplate.getForObject("http://localhost:8083/ratings/users/" + user.getUserId(), Rating[].class);
+            Rating[] ratingsForUser = restTemplate.getForObject("http://RATING-SERVICE/ratings/users/" + user.getUserId(), Rating[].class);
+            if (ratingsForUser == null) {
+                return listOfUsers;
+            }
             List<Rating> ratings = Arrays.stream(ratingsForUser).toList();
             List<Rating> ratingList = getHotelInfo(ratings);
             user.setRating(ratingList);
@@ -54,7 +57,10 @@ public class UserServiceImpl implements UserService {
         //populating ratings var
         //fetching ratings from ratings table for that user id
         //http://localhost:8083/ratings/users/2fb51a39-9f61-4cfa-a960-132bd1ab1998
-        Rating[] ratingsForUser = restTemplate.getForObject("http://localhost:8083/ratings/users/" + user.getUserId(), Rating[].class);
+        Rating[] ratingsForUser = restTemplate.getForObject("http://RATING-SERVICE/ratings/users/" + user.getUserId(), Rating[].class);
+        if (ratingsForUser == null) {
+            return user;
+        }
         List<Rating> ratings = Arrays.stream(ratingsForUser).toList();
         logger.info("List:{}", ratingsForUser);
         //get hotel info
@@ -79,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
     public List<Rating> getHotelInfo(List<Rating> ratings) {
         List<Rating> ratingList = ratings.stream().map(rating -> {
-            ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://localhost:8082/hotels/" + rating.getHotelId(), Hotel.class);
+            ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/" + rating.getHotelId(), Hotel.class);
             logger.info("Hotel-Service Call for hotel id:{}", hotelData.getBody().getId());
             logger.info("Hotel-Service Call HTTP STATUS CODE:{}", hotelData.getStatusCode());
             Hotel hotel = hotelData.getBody();
