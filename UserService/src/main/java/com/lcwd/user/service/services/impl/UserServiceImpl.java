@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.module.ResolutionException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -42,16 +40,9 @@ public class UserServiceImpl implements UserService {
         List<User> listOfUsers = userRepository.findAll();
         for (User user : listOfUsers) {
             Rating[] ratingsForUser = restTemplate.getForObject("http://localhost:8083/ratings/users/" + user.getUserId(), Rating[].class);
-            List<Rating> ratings=Arrays.stream(ratingsForUser).toList();
-            List<Rating> ratingList=ratings.stream().map(rating -> {
-                ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://localhost:8082/hotels/" + rating.getHotelId(), Hotel.class);
-                logger.info("Hotel-Service Call for hotel id:{}", hotelData.getBody().getId());
-                logger.info("Hotel-Service Call HTTP STATUS CODE:{}", hotelData.getStatusCode());
-                Hotel hotel = hotelData.getBody();
-                rating.setHotel(hotel);
-                return rating;
-            }).collect(Collectors.toList());
-            user.setRating(ratings);
+            List<Rating> ratings = Arrays.stream(ratingsForUser).toList();
+            List<Rating> ratingList = getHotelInfo(ratings);
+            user.setRating(ratingList);
         }
         return listOfUsers;
     }
@@ -67,18 +58,7 @@ public class UserServiceImpl implements UserService {
         List<Rating> ratings = Arrays.stream(ratingsForUser).toList();
         logger.info("List:{}", ratingsForUser);
         //get hotel info
-        List<Rating> ratingList = ratings.stream().map(rating -> {
-            //api call to hotel service
-            //http://localhost:8082/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27
-            ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://localhost:8082/hotels/" + rating.getHotelId(), Hotel.class);
-            logger.info("Hotel-Service Call for hotel id:{}", hotelData.getBody().getId());
-            logger.info("Hotel-Service Call HTTP STATUS CODE:{}", hotelData.getStatusCode());
-            Hotel hotel = hotelData.getBody();
-            //set hotel to rating object
-            rating.setHotel(hotel);
-            //return rating
-            return rating;
-        }).collect(Collectors.toList());
+        List<Rating> ratingList = getHotelInfo(ratings);
         user.setRating(ratingList);
         return user;
     }
@@ -95,6 +75,18 @@ public class UserServiceImpl implements UserService {
         userData.setEmail(user.getEmail());
         userData.setAbout(user.getAbout());
         userRepository.save(userData);
+    }
+
+    public List<Rating> getHotelInfo(List<Rating> ratings) {
+        List<Rating> ratingList = ratings.stream().map(rating -> {
+            ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://localhost:8082/hotels/" + rating.getHotelId(), Hotel.class);
+            logger.info("Hotel-Service Call for hotel id:{}", hotelData.getBody().getId());
+            logger.info("Hotel-Service Call HTTP STATUS CODE:{}", hotelData.getStatusCode());
+            Hotel hotel = hotelData.getBody();
+            rating.setHotel(hotel);
+            return rating;
+        }).collect(Collectors.toList());
+        return ratingList;
     }
 
 }
