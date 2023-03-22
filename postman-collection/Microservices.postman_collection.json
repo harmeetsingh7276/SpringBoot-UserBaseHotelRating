@@ -41,7 +41,18 @@
 					"name": "Get All Users",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -49,7 +60,19 @@
 					"name": "getUserById",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/users/2fb51a39-9f61-4cfa-a960-132bd1ab1998",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"2fb51a39-9f61-4cfa-a960-132bd1ab1998"
+							]
+						}
 					},
 					"response": []
 				},
@@ -74,7 +97,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "updateUserData",
 					"request": {
 						"method": "PUT",
 						"header": [],
