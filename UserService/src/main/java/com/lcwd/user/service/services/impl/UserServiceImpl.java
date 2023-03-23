@@ -4,6 +4,7 @@ import com.lcwd.user.service.entities.Hotel;
 import com.lcwd.user.service.entities.Rating;
 import com.lcwd.user.service.entities.User;
 import com.lcwd.user.service.exception.ResourceNotFoundException;
+import com.lcwd.user.service.external.services.HotelService;
 import com.lcwd.user.service.repositories.UserRepository;
 import com.lcwd.user.service.services.UserService;
 import org.slf4j.Logger;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private HotelService hotelService;
 
     private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -85,10 +89,13 @@ public class UserServiceImpl implements UserService {
 
     public List<Rating> getHotelInfo(List<Rating> ratings) {
         List<Rating> ratingList = ratings.stream().map(rating -> {
-            ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/" + rating.getHotelId(), Hotel.class);
-            logger.info("Hotel-Service Call for hotel id:{}", hotelData.getBody().getId());
-            logger.info("Hotel-Service Call HTTP STATUS CODE:{}", hotelData.getStatusCode());
-            Hotel hotel = hotelData.getBody();
+            //Using restTemplate
+            //ResponseEntity<Hotel> hotelData = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/" + rating.getHotelId(), Hotel.class);
+//            logger.info("Hotel-Service Call for hotel id:{}", hotelData.getBody().getId());
+//            logger.info("Hotel-Service Call HTTP STATUS CODE:{}", hotelData.getStatusCode());
+//            Hotel hotel = hotelData.getBody();
+            //Using FeignClient
+            Hotel hotel = hotelService.getHotel(rating.getHotelId());
             rating.setHotel(hotel);
             return rating;
         }).collect(Collectors.toList());
