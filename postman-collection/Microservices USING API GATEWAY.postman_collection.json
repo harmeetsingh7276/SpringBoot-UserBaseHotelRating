@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "8cb0d5a4-3a0c-4bc4-a476-148b59a70101",
-		"name": "Microservices",
+		"_postman_id": "7455167b-ad95-42a7-a06e-151b6c20483c",
+		"name": "Microservices USING API GATEWAY",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23324518"
 	},
@@ -24,12 +24,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/users",
+							"raw": "http://localhost:8084/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8084",
 							"path": [
 								"users"
 							]
@@ -43,12 +43,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/users",
+							"raw": "http://localhost:8084/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8084",
 							"path": [
 								"users"
 							]
@@ -62,12 +62,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/users/2fb51a39-9f61-4cfa-a960-132bd1ab1998",
+							"raw": "http://localhost:8084/users/2fb51a39-9f61-4cfa-a960-132bd1ab1998",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8084",
 							"path": [
 								"users",
 								"2fb51a39-9f61-4cfa-a960-132bd1ab1998"
@@ -82,12 +82,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/users/61698ee1-4e15-466b-93d8-275703904773",
+							"raw": "http://localhost:8084/users/61698ee1-4e15-466b-93d8-275703904773",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8084",
 							"path": [
 								"users",
 								"61698ee1-4e15-466b-93d8-275703904773"
@@ -111,12 +111,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8081/users/c242a18c-3fdb-4c10-b340-6a6a94101ad5",
+							"raw": "http://localhost:8084/users/c242a18c-3fdb-4c10-b340-6a6a94101ad5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8084",
 							"path": [
 								"users",
 								"c242a18c-3fdb-4c10-b340-6a6a94101ad5"
@@ -145,12 +145,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/hotels",
+							"raw": "http://localhost:8084/hotels",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8084",
 							"path": [
 								"hotels"
 							]
@@ -176,12 +176,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/hotels",
+							"raw": "http://localhost:8084/hotels",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8084",
 							"path": [
 								"hotels"
 							]
@@ -207,12 +207,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
+							"raw": "http://localhost:8084/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8084",
 							"path": [
 								"hotels",
 								"0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27"
@@ -236,12 +236,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8082/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
+							"raw": "http://localhost:8084/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8084",
 							"path": [
 								"hotels",
 								"0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27"
@@ -256,12 +256,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8082/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
+							"raw": "http://localhost:8084/hotels/0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8084",
 							"path": [
 								"hotels",
 								"0ef9aac2-1dc5-4bce-9b16-88dd9bc19c27"
@@ -290,12 +290,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8083/ratings",
+							"raw": "http://localhost:8084/ratings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8084",
 							"path": [
 								"ratings"
 							]
@@ -321,12 +321,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8083/ratings",
+							"raw": "http://localhost:8084/ratings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8084",
 							"path": [
 								"ratings"
 							]
@@ -352,12 +352,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8083/ratings/users/2fb51a39-9f61-4cfa-a960-132bd1ab1998",
+							"raw": "http://localhost:8084/ratings/users/2fb51a39-9f61-4cfa-a960-132bd1ab1998",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8084",
 							"path": [
 								"ratings",
 								"users",
@@ -385,12 +385,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8083/ratings/hotels/99b192b8-4cf5-4b9d-b920-e526505a9526",
+							"raw": "http://localhost:8084/ratings/hotels/99b192b8-4cf5-4b9d-b920-e526505a9526",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8084",
 							"path": [
 								"ratings",
 								"hotels",
@@ -406,12 +406,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8083/ratings/641c1c0bd796a44f3642ba56",
+							"raw": "http://localhost:8084/ratings/641c1c0bd796a44f3642ba56",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8084",
 							"path": [
 								"ratings",
 								"641c1c0bd796a44f3642ba56"
@@ -435,12 +435,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8083/ratings/6419e0dde92e6d7da8b02cd5",
+							"raw": "http://localhost:8084/ratings/6419e0dde92e6d7da8b02cd5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8083",
+							"port": "8084",
 							"path": [
 								"ratings",
 								"6419e0dde92e6d7da8b02cd5"
