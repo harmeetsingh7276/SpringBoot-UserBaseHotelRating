@@ -1,6 +1,7 @@
 package com.lcwd.rating.services.impl;
 
 import com.lcwd.rating.entities.Rating;
+import com.lcwd.rating.exception.ResourceNotFoundException;
 import com.lcwd.rating.repository.RatingRepository;
 import com.lcwd.rating.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,19 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public List<Rating> getRatingsByHotelId(String hotelId) {
         return ratingRepository.findByHotelId(hotelId);
+    }
+
+    @Override
+    public Rating updateRating(String ratingId, Rating rating) {
+        Rating ratingData=ratingRepository.findById(ratingId).orElseThrow(() -> new ResourceNotFoundException("Rating not found on server with id:" + ratingId));
+        ratingData.setRating(rating.getRating());
+        ratingData.setFeedback(rating.getFeedback());
+        ratingRepository.save(ratingData);
+        return ratingData;
+    }
+
+    @Override
+    public void deleteRating(String ratingId) {
+        ratingRepository.deleteById(ratingId);
     }
 }
