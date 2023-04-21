@@ -8,14 +8,16 @@ public interface UserService {
     //user Operations
     //create
     User saveUser(User user);
+
     //getAll Users
     List<User> getAllUser();
 
     //get specificed UserID
     User getUser(String userId);
-    
+
     // TODO: 21/03/23  delete
     void deleteUser(String userId);
+
     // TODO: 21/03/23 update
-    void updateUser(String userId,User user);
+    void updateUser(String userId, User user);
 }

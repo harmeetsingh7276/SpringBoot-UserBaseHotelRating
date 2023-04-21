@@ -12,17 +12,17 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="micro_users")
+@Table(name = "micro_users")
 public class User {
     @Id
-    @Column(name="ID")
+    @Column(name = "ID")
     private String userId;
-    @Column(name="NAME")
+    @Column(name = "NAME")
     private String name;
-    @Column(name="EMAIL")
+    @Column(name = "EMAIL")
     private String email;
-    @Column(name="ABOUT")
+    @Column(name = "ABOUT")
     private String about;
     @Transient//to not store in db
-    private List<Rating> rating=new ArrayList<>();
+    private List<Rating> rating = new ArrayList<>();
 }
